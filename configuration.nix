@@ -57,13 +57,15 @@
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.config = { 
+    allowUnfree = true;
+    permittedInsecurePackages = [ "nix-2.16.2" ];
+  };
   environment.systemPackages = with pkgs; [
     vim
     wget
     git
-  ];
+  ];  
  
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;

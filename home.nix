@@ -3,7 +3,6 @@
 {
 
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
     ./home/alacritty
     ./home/git
     ./home/nvim
