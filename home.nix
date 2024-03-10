@@ -17,6 +17,8 @@
     firefox
     ripgrep
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    dolphin
+    wofi
   ];
 
   home.file = {

@@ -26,14 +26,6 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  services.xserver = {
-    layout = "gb";
-    xkbVariant = "";
-  };
   console.keyMap = "uk";
 
   services.printing.enable = true;
@@ -70,6 +62,7 @@
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+  programs.hyprland.enable = true;
   
   services.openssh.enable = true;
 
