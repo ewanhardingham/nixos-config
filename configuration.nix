@@ -64,6 +64,10 @@
     wget
     git
   ];
+ 
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
   
   services.openssh.enable = true;
 
