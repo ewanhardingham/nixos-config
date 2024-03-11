@@ -54,7 +54,7 @@
         family = "JetBrainsMono Nerd Font"; 
         style = "Bold Italic";
       };
-      size = 15;
+      size = 25;
     };
 
     keyboard.bindings = [

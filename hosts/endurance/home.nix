@@ -5,6 +5,7 @@
   imports = [ 
     ../../modules/home-manager/alacritty
     ../../modules/home-manager/git
+    ../../modules/home-manager/nvim
     ../../modules/home-manager/shell
     ../../modules/home-manager/ssh
   ];
@@ -21,7 +22,8 @@
   };
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
+    NIXPKGS_ALLOW_INSECURE = "1";
   };
 
   programs.home-manager.enable = true;
