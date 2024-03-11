@@ -15,9 +15,10 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, nix-darwin, ... }:
+  outputs = { self, nixpkgs, home-manager, nixvim, nix-darwin, mac-app-util, ... }:
     let
       lib = nixpkgs.lib;
     in {
@@ -29,14 +30,14 @@
     };
     darwinConfigurations = {
       "endurance" = nix-darwin.lib.darwinSystem {
-        modules = [ ./hosts/endurance/configuration.nix ];
+        modules = [ ./hosts/endurance/configuration.nix mac-app-util.darwinModules.default ];
       };
     };
     darwinPackages = self.darwinConfigurations."endurance".pkgs;
     homeConfigurations = {
       "ewan@loom" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${"x86_64-linux"};
-        modules = [ ./hosts/loom/home.nix nixvim.homeManagerModules.nixvim ];
+        modules = [ ./hosts/loom/home.nix nixvim.homeManagerModules.nixvim mac-app-util.homeMamangerModules.default ];
       };
       "ewan@endurance" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${"aarch64-darwin"};
