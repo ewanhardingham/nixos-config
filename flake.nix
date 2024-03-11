@@ -11,24 +11,36 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, ... }:
+  outputs = { self, nixpkgs, home-manager, nixvim, nix-darwin, ... }:
     let
       lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
     in {
     nixosConfigurations = {
       loom = lib.nixosSystem {
-        inherit system;
-        modules = [ ./configuration.nix ];
+        system = "x86_64-linux";
+        modules = [ ./hosts/loom/configuration.nix ];
       };
     };
+    darwinConfigurations = {
+      "endurance" = nix-darwin.lib.darwinSystem {
+        modules = [ ./hosts/endurance/configuration.nix ];
+      };
+    };
+    darwinPackages = self.darwinConfigurations."endurance".pkgs;
     homeConfigurations = {
-      ewan = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix nixvim.homeManagerModules.nixvim ];
+      "ewan@loom" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${"x86_64-linux"};
+        modules = [ ./hosts/loom/home.nix nixvim.homeManagerModules.nixvim ];
+      };
+      "ewan@endurance" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${"aarch64-darwin"};
+        modules = [ ./hosts/endurance/home.nix nixvim.homeManagerModules.nixvim ];
       };
     };
   };

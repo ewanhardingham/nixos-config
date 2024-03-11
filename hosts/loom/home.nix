@@ -3,11 +3,11 @@
 {
 
   imports = [
-    ./home/alacritty
-    ./home/git
-    ./home/nvim
-    ./home/shell
-    ./home/ssh
+    ../../modules/home-manager/alacritty
+    ../../modules/home-manager/git
+    ../../modules/home-manager/nvim
+    ../../modules/home-manager/shell
+    ../../modules/home-manager/ssh
   ];
 
   home.username = "ewan";
