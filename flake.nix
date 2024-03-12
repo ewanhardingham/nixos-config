@@ -37,11 +37,11 @@
     homeConfigurations = {
       "ewan@loom" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${"x86_64-linux"};
-        modules = [ ./hosts/loom/home.nix nixvim.homeManagerModules.nixvim mac-app-util.homeMamangerModules.default ];
+        modules = [ ./hosts/loom/home.nix nixvim.homeManagerModules.nixvim ]; 
       };
       "ewan@endurance" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${"aarch64-darwin"};
-        modules = [ ./hosts/endurance/home.nix nixvim.homeManagerModules.nixvim ];
+        modules = [ ./hosts/endurance/home.nix nixvim.homeManagerModules.nixvim mac-app-util.homeMamangerModules.default ];
       };
     };
   };
