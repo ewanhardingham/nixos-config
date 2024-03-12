@@ -36,7 +36,11 @@
     darwinPackages = self.darwinConfigurations."endurance".pkgs;
     homeConfigurations = {
       "ewan@loom" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${"x86_64-linux"};
+	pkgs = import nixpkgs {
+	  system = "x86_64-linux";
+	  config.allowUnfree = true;
+          permittedInsecurePackages = [ "nix-2.16.2" ];
+	};
         modules = [ ./hosts/loom/home.nix nixvim.homeManagerModules.nixvim ]; 
       };
       "ewan@endurance" = home-manager.lib.homeManagerConfiguration {

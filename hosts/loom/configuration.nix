@@ -8,6 +8,19 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [ amdvlk ];
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  };
 
   networking.hostName = "loom";
   networking.networkmanager.enable = true;
@@ -29,18 +42,17 @@
   console.keyMap = "uk";
 
   services.printing.enable = true;
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  hardware.opengl.enable = true;
+  sound.enable = true;
+  security.rtkit.enable = true;
+  security.polkit.enable = true;
+  hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
 
   users.users.ewan = {
     isNormalUser = true;
@@ -51,19 +63,23 @@
     ];
   };
 
-  nixpkgs.config = { 
-    allowUnfree = true;
-    permittedInsecurePackages = [ "nix-2.16.2" ];
-  };
   environment.systemPackages = with pkgs; [
     vim
     wget
     git
+    wl-clipboard
   ];  
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  nixpkgs.config.allowUnfree = true;
+
+  programs.hyprland.enable = true;
  
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+  programs.steam.enable = true;
   
   services.openssh.enable = true;
 
