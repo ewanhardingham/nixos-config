@@ -1,10 +1,16 @@
 { pkgs, ... }:
 {
+
+  imports = [ 
+   ../../modules/nixos/yabai.nix
+   ../../modules/nixos/skhd.nix
+  ]; 
   
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [ 
-    pkgs.vim 
+    pkgs.vim
+    pkgs.jq
   ];
 
   programs.zsh.enable = true;  # default shell on catalina
@@ -137,6 +143,7 @@
 
       loginwindow = {
         GuestEnabled = false;  # disable guest user
+	SHOWFULLNAME = false;
       };
     };
   };
@@ -153,7 +160,6 @@
 
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
-
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
