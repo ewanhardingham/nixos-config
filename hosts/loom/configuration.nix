@@ -4,7 +4,6 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ../../modules/nixos/nvidia.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -30,9 +29,9 @@
   console.keyMap = "uk";
 
   services.printing.enable = true;
-
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
   security.polkit.enable = true;
   services.pipewire = {
@@ -41,6 +40,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  hardware.opengl.enable = true;
 
   users.users.ewan = {
     isNormalUser = true;
