@@ -1,15 +1,19 @@
 { inputs, pkgs, ... }:
 {
 
+  imports = [ ./hyprpaper.nix ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
 
     settings = {
+
+      env = [ "XCURSOR_SIZE, 24" ];
       exec-once = [
+        "${pkgs.hyprpaper}/bin/hyprpaper"
         "hyprctl setcursor Qogir 24"
-	"waybar"
 	"mako"
 	"hyprpaper"
 	"wl-paste --type text --watch cliphist store"
@@ -17,7 +21,7 @@
       ];
 
       monitor = [
-        ",preferred,auto,2"
+        "HDMI-A-2,3840x2160@120,auto,2"
       ];
 
       general = {
@@ -29,6 +33,7 @@
       misc = {
         disable_splash_rendering = true;
         force_default_wallpaper = 1;
+	vrr = 2; # variable refresh rate (freesync) in fullscreen modes
       };
 
       input = {
@@ -97,6 +102,10 @@
         "SUPER, Return, exec, alacritty"
         "SUPER, W, exec, firefox"
 	"SUPER, Space, exec, rofi -show drun"
+	",XF86AudioRaiseVolume, exec, pamixer -i 5"
+	",XF86AudioLowerVolume, exec, pamixer -d 5"
+	"CTRL ALT, L, exec, hyprctl keyword monitor 'HDMI-A-2, 3840x2160@60, auto, 1'" 
+	"CTRL ALT, M, exec, hyprctl keyword monitor 'HDMI-A-2, 3840x2160, auto, 2'" 
 
 
         "ALT, Tab, focuscurrentorlast"

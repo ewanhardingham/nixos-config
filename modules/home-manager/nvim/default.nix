@@ -3,7 +3,20 @@
   programs.nixvim = {
     enable = true;
 
-    colorschemes.ayu.enable = true;
+    colorschemes.ayu = {
+      enable = true;
+      settings.overrides = {
+        Normal = { bg = "None"; };
+	ColorColumn = { bg = "None"; };
+        SignColumn = { bg = "None"; };
+        Folded = { bg = "None"; };
+        FoldColumn = { bg = "None"; };
+        CursorLine = { bg = "None"; };
+        CursorColumn = { bg = "None"; };
+        WhichKeyFloat = { bg = "None"; };
+        VertSplit = { bg = "None"; };
+      };
+    };
 
     globals.mapleader = " ";
     globals.maplocalleader = " ";

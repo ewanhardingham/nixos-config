@@ -3,7 +3,7 @@
   programs.alacritty.enable = true;
   
   programs.alacritty.settings = {
-    window = { padding = { x = 10; y = 10; }; }; 
+    window = { padding = { x = 10; y = 10; }; opacity = 0.8; }; 
 
     scrolling = {
       history = 10000; 
@@ -12,7 +12,8 @@
     
     colors = {
       primary = {
-        background = "#0A0E14";
+        #background = "#0A0E14";
+        background = "#000000";
 	foreground = "#B3B1AD";
       };
       normal = {

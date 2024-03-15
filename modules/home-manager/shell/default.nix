@@ -11,7 +11,7 @@
     
     # enable plugins
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
   };
 
   # starship

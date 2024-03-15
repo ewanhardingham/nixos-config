@@ -9,7 +9,9 @@
     ../../modules/home-manager/nvim
     ../../modules/home-manager/shell
     ../../modules/home-manager/ssh
+    ../../modules/home-manager/variables/theme
     ../../modules/home-manager/waybar
+    ../../modules/home-manager/wallpaper
   ];
 
 
@@ -17,19 +19,25 @@
   programs.btop = {
     enable = true;
   };
+  programs.mangohud = {
+    enable = true;
+    settings.full = true;
+  };
 
   home.username = "ewan";
   home.homeDirectory = "/home/ewan";
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    firefox
-    ripgrep
-    neofetch
     mako # notifs
+    pamixer # sound mixer
     hyprpaper # wallpaper
     cliphist # clipboard manager
-    discord
+    discord # chat
+    lutris # game launcher
+    gamemode # game optimizer
+    gamescope # res override
+    _1password-gui # password manager
   ];
 
   home.file = {
