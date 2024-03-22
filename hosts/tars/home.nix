@@ -4,7 +4,7 @@
 
   imports = [ 
     ../../modules/home-manager/alacritty
-#    ../../modules/home-manager/nvim
+    ../../modules/home-manager/nvim
     ../../modules/home-manager/shell
   ];
 
@@ -14,6 +14,8 @@
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    ripgrep
+    nixfmt
   ];
 
   home.file = {

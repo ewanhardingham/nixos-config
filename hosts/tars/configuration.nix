@@ -1,9 +1,30 @@
-{ pkgs, ... }: 
-{
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [ pkgs.vim ];
+{ pkgs, ... }: {
+
+  environment.systemPackages = [ pkgs.vim pkgs.jq ];
+
+  homebrew = {
+    enable = true;
+
+    onActivation = {
+      autoUpdate = false;
+      cleanup = "zap";
+    };
+
+    taps = [ "homebrew/services" "homebrew/cask-versions" ];
+
+    brews = [ "wget" ];
+
+    casks = [
+      # "1password"
+      # "arc"
+    ];
+  };
+
+  # Add ability to used TouchID for sudo authentication
+  security.pam.enableSudoTouchIdAuth = true;
+
+  # Temp
+  fonts.fontDir.enable = true;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -13,7 +34,7 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh.enable = true; # default shell on catalina
   # programs.fish.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
