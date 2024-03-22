@@ -1,5 +1,5 @@
 {
-  description = "ewanhardingham's NixOS Flake";
+  description = "ewanhardingham's Nix Flake";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -15,10 +15,9 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, nix-darwin, mac-app-util, ... }:
+  outputs = { self, nixpkgs, home-manager, nixvim, nix-darwin, ... }:
     let
       lib = nixpkgs.lib;
     in {
@@ -29,23 +28,23 @@
       };
     };
     darwinConfigurations = {
-      "endurance" = nix-darwin.lib.darwinSystem {
-        modules = [ ./hosts/endurance/configuration.nix mac-app-util.darwinModules.default ];
+      "tars" = nix-darwin.lib.darwinSystem {
+        modules = [ ./hosts/tars/configuration.nix ];
       };
     };
-    darwinPackages = self.darwinConfigurations."endurance".pkgs;
+    darwinPackages = self.darwinConfigurations."tars".pkgs;
     homeConfigurations = {
       "ewan@loom" = home-manager.lib.homeManagerConfiguration {
-	pkgs = import nixpkgs {
-	  system = "x86_64-linux";
-	  config.allowUnfree = true;
-          permittedInsecurePackages = [ "nix-2.16.2" ];
-	};
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+                permittedInsecurePackages = [ "nix-2.16.2" ];
+        };
         modules = [ ./hosts/loom/home.nix nixvim.homeManagerModules.nixvim ]; 
       };
-      "ewan@endurance" = home-manager.lib.homeManagerConfiguration {
+      "ewan.hardingham@tars" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${"aarch64-darwin"};
-        modules = [ ./hosts/endurance/home.nix nixvim.homeManagerModules.nixvim mac-app-util.homeMamangerModules.default ];
+        modules = [ ./hosts/tars/home.nix nixvim.homeManagerModules.nixvim ];
       };
     };
   };

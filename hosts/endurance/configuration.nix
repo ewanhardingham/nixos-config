@@ -142,7 +142,7 @@
 
       loginwindow = {
         GuestEnabled = false;  # disable guest user
-	SHOWFULLNAME = false;
+	      SHOWFULLNAME = false;
       };
     };
   };
