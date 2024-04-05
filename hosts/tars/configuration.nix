@@ -26,6 +26,7 @@
       "firefox"
       "docker"
       "shureplus-motiv"
+      "arc"
     ];
   };
 
