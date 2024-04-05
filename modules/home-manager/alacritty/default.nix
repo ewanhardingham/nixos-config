@@ -3,7 +3,12 @@
   programs.alacritty.enable = true;
   
   programs.alacritty.settings = {
-    window = { padding = { x = 10; y = 10; }; opacity = 0.8; }; 
+    window = { 
+      padding = { x = 10; y = 10; };
+      opacity = 0.66;
+      blur = true;
+      decorations = "Buttonless";
+    }; 
 
     scrolling = {
       history = 10000; 
@@ -55,7 +60,7 @@
         family = "JetBrainsMono Nerd Font"; 
         style = "Bold Italic";
       };
-      size = 13;
+      size = 20;
     };
 
     keyboard.bindings = [

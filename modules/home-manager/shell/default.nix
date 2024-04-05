@@ -23,8 +23,9 @@
 
   # shell aliases
   home.shellAliases = {
-    nixflaker = "sudo nixos-rebuild switch --flake ~/nixos#default";
-    nixflakeu = "nix flake update && sudo nixos-rebuild switch --flake ~/nixos#default";
+    rtars = "darwin-rebuild switch --flake .#tars";
+    htars = "home-manager switch --flake .#ewan.hardingham@tars --impure";
+    nixclean = "nix-collect-garbage -d";
   };
 }
 

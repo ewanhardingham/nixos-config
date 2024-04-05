@@ -1,5 +1,11 @@
 { pkgs, ... }: {
 
+
+  imports = [ 
+    ../../modules/nixos/yabai
+    ../../modules/nixos/skhd
+  ];
+
   environment.systemPackages = [ pkgs.vim pkgs.jq ];
 
   homebrew = {
@@ -15,8 +21,11 @@
     brews = [ "wget" ];
 
     casks = [
-      # "1password"
-      # "arc"
+      "1password"
+      "raycast"
+      "firefox"
+      "docker"
+      "shureplus-motiv"
     ];
   };
 

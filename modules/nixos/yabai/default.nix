@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   services.yabai = {
     enable = true;
@@ -27,7 +28,7 @@
       mouse_action1                = "move";
       mouse_action2                = "resize";
       layout                       = "bsp";
-      top_padding                  = 36;
+      top_padding                  = 10;
       bottom_padding               = 10;
       left_padding                 = 10;
       right_padding                = 10;
@@ -35,19 +36,8 @@
     };
 
     extraConfig = ''
-	yabai -m rule --add app="^System Preferences$" manage=off
-        yabai -m rule --add app="^System Settings$" manage=off
-        yabai -m rule --add app="^Spotify$" manage=off
-        yabai -m rule --add app="^Finder$" manage=off
-        yabai -m rule --add app="^Installer$" manage=off
-        yabai -m rule --add app="^FaceTime$" manage=off
-        yabai -m rule --add app="^Preview$" manage=on
-
-	setup_space 1 1
-	setup_space 2 2
-	setup_space 3 3
-	setup_space 4 4
-	setup_space 5 5
+        # rules
+        yabai -m rule --add app='System Preferences' manage=off
       '';
-  };
+    };
 }

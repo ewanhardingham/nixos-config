@@ -1,4 +1,14 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, ... }: 
+  let
+    cfg = config.nixvim;
+    inherit (cfg.helpers) mkRaw toLuaObject;
+    fn = config.programs.nixvim.extraFunction;
+  in
+{
+  imports = [ ./extra-functions.nix ];
+
+  home.packages = with pkgs; [ coursier metals ];
+
   programs.nixvim = {
     enable = true;
 
@@ -81,7 +91,19 @@
       cmp = {
         enable = true;
         settings = {
-          snippet = { expand = "luasnip"; };
+	  sources = [ 
+            { name = "nvim_lsp"; }
+            { name = "luasnip"; }
+            { name = "buffer"; }
+            { name = "nvim_lua"; }
+            { name = "path"; }
+	  ];
+          snippet = { expand = ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+	    ''; 
+	  };
           mapping = {
             __raw = ''
               cmp.mapping.preset.insert({
@@ -107,6 +129,7 @@
       cmp_luasnip.enable = true;
       cmp-nvim-lsp.enable = true;
       cmp-path.enable = true;
+      cmp-buffer.enable = true;
       gitsigns = {
         enable = true;
         signs = {
@@ -225,7 +248,11 @@
       };
     };
 
-    extraPlugins = with pkgs.vimPlugins; [ nvim-web-devicons plenary-nvim ];
+    extraPlugins = with pkgs.vimPlugins; [ 
+      nvim-web-devicons 
+      plenary-nvim 
+      nvim-metals
+    ];
 
     options = {
       number = true;
@@ -319,12 +346,58 @@
       }
     ];
 
-    autoGroups = { kickstart-highlight-yank.clear = true; };
+    autoCmd = [
+      {
+        event = [ "TextYankPost" ];
+        group = "kickstart-highlight-yank";
+        callback = { __raw = "function() vim.highlight.on_yank() end"; };
+      }
+      {
+        event = [ "FileType" ];
+        pattern = [ "scala" "sbt" "java" ];
+        callback = mkRaw fn.nvim_metals_attach;
+        group = "nvim_metals";
+      }
+    ];
 
-    autoCmd = [{
-      event = [ "TextYankPost" ];
-      group = "kickstart-highlight-yank";
-      callback = { __raw = "function() vim.highlight.on_yank() end"; };
-    }];
+    autoGroups = {
+      kickstart-highlight-yank.clear = true;
+      nvim_metals = {
+        clear = true;
+      };
+    };
+
+    userCommands = {
+      Metals = {
+        desc = "Metals command palette";
+        command = "lua require('telescope').extensions.metals.commands()";
+      };
+    };
+
+    extraFunctions = {
+      lightline_lsp_status = ''
+        return vim.g['metals_status']
+      '';
+      nvim_metals_attach = ''
+        require("metals").initialize_or_attach(metals_config)
+      '';
+    };
+
+    extraConfigLuaPre = '' 
+      metals_config = require("metals").bare_config()
+      metals_config.init_options.statusBarProvider = "off"
+
+      metals_config.find_root_dir_max_project_nesting = 3
+      metals_config.settings = {
+        showImplicitArguments = true,
+        metalsBinaryPath = "${pkgs.metals}/bin/metals",
+        excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+      }
+
+      -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
+      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+    '';
+  
   };
 }
