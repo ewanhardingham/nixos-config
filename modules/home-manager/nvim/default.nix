@@ -256,6 +256,7 @@
 
     options = {
       number = true;
+      relativenumber = true;
       mouse = "a";
       showmode = false;
       clipboard = "unnamedplus";
