@@ -6,6 +6,7 @@
     ../../modules/home-manager/nvim
     ../../modules/home-manager/shell
     ../../modules/home-manager/ssh
+    ../../modules/home-manager/tmux
     ../../modules/home-manager/variables/theme
   ];
 

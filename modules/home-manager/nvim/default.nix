@@ -33,6 +33,7 @@
     # nixvim abscent plugins: tpope/vim-sleuth
 
     plugins = {
+      tmux-navigator.enable = true;
       comment-nvim.enable = true;
       fidget.enable = true;
       luasnip.enable = true;
