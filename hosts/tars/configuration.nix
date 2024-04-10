@@ -27,6 +27,7 @@
       "docker"
       "shureplus-motiv"
       "arc"
+      "obsidian"
     ];
   };
 
