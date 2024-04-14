@@ -7,7 +7,7 @@
 {
   imports = [ ./extra-functions.nix ];
 
-  home.packages = with pkgs; [ coursier metals ];
+  home.packages = with pkgs; [ coursier metals scala-cli ];
 
   programs.nixvim = {
     enable = true;

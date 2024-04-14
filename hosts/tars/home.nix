@@ -6,6 +6,7 @@
     ../../modules/home-manager/alacritty
     ../../modules/home-manager/nvim
     ../../modules/home-manager/shell
+    ../../modules/home-manager/tmux
   ];
 
   home.username = "ewan.hardingham";
