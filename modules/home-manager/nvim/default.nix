@@ -7,7 +7,7 @@
 {
   imports = [ ./extra-functions.nix ];
 
-  home.packages = with pkgs; [ coursier metals scala-cli ];
+  home.packages = with pkgs; [ coursier metals ];
 
   programs.nixvim = {
     enable = true;
@@ -30,10 +30,10 @@
     globals.mapleader = " ";
     globals.maplocalleader = " ";
 
-    # nixvim abscent plugins: tpope/vim-sleuth
+    # nixvim abscent plugins: tpope/vim-sleuthnvim
 
     plugins = {
-      tmux-navigator.enable = true;
+      markdown-preview.enable = true;
       comment-nvim.enable = true;
       fidget.enable = true;
       luasnip.enable = true;
@@ -57,6 +57,8 @@
       lsp = {
         enable = true;
         servers = {
+	  pyright.enable = true;
+	  jsonls.enable = true;
           bashls.enable = true;
           lua-ls.enable = true;
           dockerls.enable = true;

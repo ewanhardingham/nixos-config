@@ -18,16 +18,19 @@
 
     taps = [ "homebrew/services" "homebrew/cask-versions" ];
 
-    brews = [ "wget" ];
+    brews = [ "wget" "aiven-client" ];
+
 
     casks = [
       "1password"
       "raycast"
       "firefox"
+      "google-chrome"
       "docker"
       "shureplus-motiv"
-      "arc"
       "obsidian"
+      "parsec"
+      "intellij-idea"
     ];
   };
 

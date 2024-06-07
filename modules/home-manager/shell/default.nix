@@ -1,6 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+
+  home.packages = with pkgs; [ scala-cli ];
+
   # zsh
   programs.zsh = {
     # enable zsh
