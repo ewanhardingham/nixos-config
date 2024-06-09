@@ -11,12 +11,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  # XDG
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  };
-
   # Networking
   networking.hostName = "loom";
   networking.networkmanager.enable = true;
@@ -69,7 +63,6 @@
 
   # System-level programs
   nixpkgs.config.allowUnfree = true;
-  programs.hyprland.enable = true;
   programs.zsh.enable = true;
   programs.steam.enable = true;
   environment.systemPackages = with pkgs; [
@@ -78,11 +71,14 @@
     wget # network dl
     git # source control
     wl-clipboard # clipboard history
-    blueberry # bluetooth gui
     ripgrep # system util
     neofetch # system info
     unzip 
   ]; 
+
+  # KDE
+  services.xserver.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Shell
   environment.shells = with pkgs; [ zsh ];
