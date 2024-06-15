@@ -5,9 +5,6 @@
   programs.alacritty.settings = {
     window = { 
       padding = { x = 10; y = 10; };
-      opacity = 0.66;
-      blur = true;
-#      decorations = "Buttonless";
     }; 
 
     scrolling = {
