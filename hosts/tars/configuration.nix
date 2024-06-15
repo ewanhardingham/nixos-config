@@ -24,21 +24,15 @@
     casks = [
       "1password"
       "raycast"
-      "firefox"
       "google-chrome"
       "docker"
       "shureplus-motiv"
-      "obsidian"
-      "parsec"
       "intellij-idea"
     ];
   };
 
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
-
-  # Temp
-  fonts.fontDir.enable = true;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
