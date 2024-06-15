@@ -22,6 +22,7 @@
 
   home.username = "ewan";
   home.homeDirectory = "/home/ewan";
+  home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -30,6 +31,7 @@
     gamemode # game optimizer
     gamescope # res override
     _1password-gui # password manager
+    hypnotix
   ];
 
   home.file = {
@@ -38,7 +40,10 @@
   home.sessionVariables = {
   };
 
-  home.stateVersion = "23.11";
   programs.home-manager.enable = true;
+  programs.mangohud = {
+    enable = true;
+    settings.full = true;
+  };
 
 }

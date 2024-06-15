@@ -88,6 +88,10 @@
     unzip 
   ]; 
 
+  # KDE
+  services.xserver.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
   # Shell
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
