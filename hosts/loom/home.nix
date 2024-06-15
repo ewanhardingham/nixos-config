@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -12,7 +12,6 @@
     ../../modules/home-manager/wallpaper
   ];
 
-  programs.rofi.enable = true;
   programs.btop = {
     enable = true;
   };
@@ -26,10 +25,6 @@
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    mako # notifs
-    pamixer # sound mixer
-    hyprpaper # wallpaper
-    cliphist # clipboard manager
     discord # chat
     lutris # game launcher
     gamemode # game optimizer
@@ -38,7 +33,6 @@
   ];
 
   home.file = {
-    
   };
 
   home.sessionVariables = {

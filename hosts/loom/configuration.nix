@@ -12,12 +12,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
+  # Desktop
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "ewan";
   services.desktopManager.plasma6.enable = true;
-
+  
+  # Fix for autlogin
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
@@ -46,7 +48,6 @@
   services = {
     printing.enable = true;
     openssh.enable = true;
-    blueman.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -82,7 +83,6 @@
     wget # network dl
     git # source control
     wl-clipboard # clipboard history
-    blueberry # bluetooth gui
     ripgrep # system util
     neofetch # system info
     unzip 
