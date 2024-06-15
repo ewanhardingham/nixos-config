@@ -5,15 +5,12 @@
   imports = [
     ../../modules/home-manager/alacritty
     ../../modules/home-manager/git
-    ../../modules/home-manager/hypr
     ../../modules/home-manager/nvim
     ../../modules/home-manager/shell
     ../../modules/home-manager/ssh
     ../../modules/home-manager/variables/theme
-    ../../modules/home-manager/waybar
     ../../modules/home-manager/wallpaper
   ];
-
 
   programs.rofi.enable = true;
   programs.btop = {
@@ -45,7 +42,6 @@
   };
 
   home.sessionVariables = {
-     NIXPKGS_ALLOW_INSECURE = "1";
   };
 
   home.stateVersion = "23.11";

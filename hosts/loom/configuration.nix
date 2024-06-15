@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
     [ 
       ./hardware-configuration.nix
+      ../../modules/nixos/sunshine
     ];
 
   # Boot Settings
@@ -11,11 +12,15 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  # XDG
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  };
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "ewan";
+  services.desktopManager.plasma6.enable = true;
+
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
+
 
   # Networking
   networking.hostName = "loom";
@@ -69,7 +74,6 @@
 
   # System-level programs
   nixpkgs.config.allowUnfree = true;
-  programs.hyprland.enable = true;
   programs.zsh.enable = true;
   programs.steam.enable = true;
   environment.systemPackages = with pkgs; [

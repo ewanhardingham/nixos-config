@@ -21,7 +21,8 @@
       ];
 
       monitor = [
-        "HDMI-A-2,3840x2160@120,auto,2"
+        "DP-1,3840x2160@240,auto,1.5"
+        "HDMI-A-1,3840x2160@120,auto,1"
       ];
 
       general = {
@@ -104,8 +105,10 @@
 	"SUPER, Space, exec, rofi -show drun"
 	",XF86AudioRaiseVolume, exec, pamixer -i 5"
 	",XF86AudioLowerVolume, exec, pamixer -d 5"
-	"CTRL ALT, L, exec, hyprctl keyword monitor 'HDMI-A-2, 3840x2160@60, auto, 1'" 
-	"CTRL ALT, M, exec, hyprctl keyword monitor 'HDMI-A-2, 3840x2160, auto, 2'" 
+	"CTRL ALT, L, exec, hyprctl keyword monitor 'DP-1, 3840x2160@240, auto, 1.5'" 
+	"CTRL ALT, M, exec, hyprctl keyword monitor 'DP-1, 3840x2160@240, auto, 1'"
+        "SUPER, P, exec, hyprshot -m window"
+        "SUPER SHIFT, P, exec, hyprshot -m region"
 
 
         "ALT, Tab, focuscurrentorlast"

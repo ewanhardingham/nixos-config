@@ -19,7 +19,7 @@
         modules-left = [ "custom/logo" "hyprland/window" ];
         modules-center = [ "hyprland/workspaces" ];
         modules-right =
-          [ "tray" "backlight" "pulseaudio" "battery" "clock" "custom/power" ];
+          [ "clock" ];
 
         "wlr/taskbar" = {
           format = "{icon}";
