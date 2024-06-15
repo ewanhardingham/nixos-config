@@ -41,9 +41,4 @@
   };
 
   programs.home-manager.enable = true;
-  programs.mangohud = {
-    enable = true;
-    settings.full = true;
-  };
-
 }
