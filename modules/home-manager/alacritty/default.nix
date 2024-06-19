@@ -14,7 +14,6 @@
     
     colors = {
       primary = {
-        #background = "#0A0E14";
         background = "#000000";
 	foreground = "#B3B1AD";
       };
@@ -57,7 +56,7 @@
         family = "JetBrainsMono Nerd Font"; 
         style = "Bold Italic";
       };
-      size = 16;
+      size = 14;
     };
 
     keyboard.bindings = [

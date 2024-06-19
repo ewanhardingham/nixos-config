@@ -26,8 +26,6 @@
 
   # shell aliases
   home.shellAliases = {
-    rtars = "darwin-rebuild switch --flake .#tars";
-    htars = "home-manager switch --flake .#ewan.hardingham@tars --impure";
     nixclean = "nix-collect-garbage -d";
   };
 }

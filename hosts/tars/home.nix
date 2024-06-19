@@ -32,5 +32,10 @@
     NIXPKGS_ALLOW_UNFREE = "1";
   };
 
+  home.shellAliases = {
+    rtars = "darwin-rebuild switch --flake .#tars";
+    htars = "home-manager switch --flake .#ewan.hardingham@tars --impure";
+  };
+
   programs.home-manager.enable = true;
 }

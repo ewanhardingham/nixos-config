@@ -27,5 +27,10 @@
     EDITOR = "nvim";
   };
 
+  home.shellAliases = {
+    rbamber = "darwin-rebuild switch --flake .#bamber";
+    hbamber = "home-manager switch --flake .#ewan@bamber";
+  };
+
   programs.home-manager.enable = true;
 }
