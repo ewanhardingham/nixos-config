@@ -1,10 +1,12 @@
-{config, pkgs, ...}:
+{ pkgs, ... }:
 {
   programs.alacritty.enable = true;
   
   programs.alacritty.settings = {
     window = { 
       padding = { x = 10; y = 10; };
+      decorations = if pkgs.stdenv.hostPlatform.isDarwin then "Buttonless" else "None";
+      startup_mode = if pkgs.stdenv.hostPlatform.isDarwin then "Fullscreen" else "Maximized";
     }; 
 
     scrolling = {
