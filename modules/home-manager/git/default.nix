@@ -6,7 +6,7 @@
     userEmail = "ewan.hardingham@hey.com";
     extraConfig = {
       init.defaultBranch = "main";
-      pull.rebase = false;
+      pull.rebase = true;
     };
   };
 }

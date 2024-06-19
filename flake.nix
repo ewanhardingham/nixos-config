@@ -31,6 +31,9 @@
       "tars" = nix-darwin.lib.darwinSystem {
         modules = [ ./hosts/tars/configuration.nix ];
       };
+      "bamber" = nix-darwin.lib.darwinSystem {
+        modules = [ ./hosts/bamber/configuration.nix ];
+      };
     };
     darwinPackages = self.darwinConfigurations."tars".pkgs;
     homeConfigurations = {
@@ -45,6 +48,10 @@
       "ewan.hardingham@tars" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${"aarch64-darwin"};
         modules = [ ./hosts/tars/home.nix nixvim.homeManagerModules.nixvim ];
+      };
+      "ewan@bamber" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${"aarch64-darwin"};
+        modules = [ ./hosts/bamber/home.nix nixvim.homeManagerModules.nixvim ];
       };
     };
   };

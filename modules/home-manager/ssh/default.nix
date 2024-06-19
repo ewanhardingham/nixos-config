@@ -1,10 +1,29 @@
-{ ... }:
+{ pkgs, lib , ... }:
+let
+  user = "ewan";
+in
 {
   programs.ssh = {
     enable = true;
+    includes = [
+      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
+        "/home/${user}/.ssh/config_external"
+      )
+      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
+        "/Users/${user}/.ssh/config_external"
+      )
+    ];
     matchBlocks = {
       "github.com" = {
-        identityFile = "~/.ssh/key"; 
+        identitiesOnly = true;
+        identityFile = [
+          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
+            "/home/${user}/.ssh/id_github"
+          )
+          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
+            "/Users/${user}/.ssh/id_github"
+          )
+        ];
       };
     };
   };
