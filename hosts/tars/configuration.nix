@@ -28,6 +28,7 @@
       "docker"
       "shureplus-motiv"
       "intellij-idea"
+      "parsec"
     ];
   };
 

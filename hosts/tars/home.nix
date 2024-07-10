@@ -19,9 +19,10 @@
     nixfmt
     slack
     sbt
-    (google-cloud-sdk.withExtraComponents[google-cloud-sdk.components.gke-gcloud-auth-plugin])
+    (google-cloud-sdk.withExtraComponents[ google-cloud-sdk.components.gke-gcloud-auth-plugin google-cloud-sdk.components.docker-credential-gcr ])
     spotify
     slides
+    vscode
   ];
 
   home.file = {
