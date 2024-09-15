@@ -18,6 +18,8 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ripgrep
     nixfmt
+    moonlight-qt
+    discord
   ];
 
   home.file = {

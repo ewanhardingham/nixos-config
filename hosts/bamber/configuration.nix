@@ -22,6 +22,9 @@
     casks = [
       "1password"
       "raycast"
+      "parsec"
+      "visual-studio-code"
+      "shureplus-motiv"
     ];
   };
 
@@ -29,6 +32,7 @@
 
   services.nix-daemon.enable = true;
   nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config.allowUnfree = true; 
 
   nix = {
     package = pkgs.nix;
@@ -67,6 +71,7 @@
 	orientation = "bottom";
 	tilesize = 48;
       };
+      # universalaccess.reduceMotion = true;
     };
   };
 }
