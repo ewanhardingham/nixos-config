@@ -33,6 +33,7 @@
     # nixvim abscent plugins: tpope/vim-sleuthnvim
 
     plugins = {
+      oil.enable = true;
       markdown-preview.enable = true;
       comment.enable = true;
       fidget.enable = true;
@@ -343,6 +344,12 @@
         key = "<C-k>";
         action = "<C-w><C-k>";
         options.desc = "Move focus to top window";
+      }
+      {
+        mode = "n";
+        key = "-";
+        action = "<CMD>Oil<CR>";
+        options.desc = "Open parent directory";
       }
     ];
 

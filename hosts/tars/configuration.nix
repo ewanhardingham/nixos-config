@@ -29,6 +29,7 @@
       "shureplus-motiv"
       "intellij-idea"
       "parsec"
+      "postico"
     ];
   };
 

@@ -23,6 +23,8 @@
     spotify
     slides
     vscode
+    tenv
+    moonlight-qt
   ];
 
   home.file = {
